@@ -44,9 +44,17 @@
                     },
                     onEachFeature: function(feature, layer) {
                         // Mostrar un popup con información del feature
-                        if (feature.properties && feature.properties.COUNTRY) {
-                            layer.bindPopup(feature.properties.COUNTRY);
-                        }
+                       // if (feature.properties && feature.properties.COUNTRY) {
+                        //    layer.bindPopup(feature.properties.COUNTRY);
+                       // }
+                         if (feature.properties) {
+                            // Crear el contenido del popup
+                            const popupContent = `
+                                <strong>Nombre:</strong> ${feature.properties.COUNTRY || 'Sin nombre'}<br>
+                                <strong>Descripción:</strong> ${feature.properties.description || 'Sin descripción'}
+                            `;
+                            // Asignar el popup a la capa
+                            layer.bindPopup(popupContent);
                     }
                 }).addTo(map);
             })
