@@ -1,6 +1,56 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar GeoJSON con Leaflet</title>
+    <!-- Incluir Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 600px; /* Altura del mapa */
+            width: 100%;   /* Ancho del mapa */
+        }
+    </style>
+</head>
 <body>
+    <h1>Mostrar GeoJSON con Leaflet</h1>
+    <div id="map"></div>
 
-<h1> Pagina 2   </h1>
+    <!-- Incluir Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Crear el mapa y centrarlo en una ubicación inicial
+        const map = L.map('map').setView([40.4168, -3.7038], 6); // Centro en España, zoom 6
+
+        // Añadir una capa de tiles (mapa base)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Cargar el archivo GeoJSON
+        fetch('bolivia.geojson') // Reemplaza con la ruta a tu archivo GeoJSON
+            .then(response => response.json())
+            .then(data => {
+                // Añadir el GeoJSON al mapa
+                L.geoJSON(data, {
+                    style: function(feature) {
+                        return {
+                            color: '#ff7800', // Color del borde
+                            weight: 2,         // Grosor del borde
+                            opacity: 1,        // Opacidad del borde
+                            fillOpacity: 0.7   // Opacidad del relleno
+                        };
+                    },
+                    onEachFeature: function(feature, layer) {
+                        // Mostrar un popup con información del feature
+                        if (feature.properties && feature.properties.name) {
+                            layer.bindPopup(feature.properties.name);
+                        }
+                    }
+                }).addTo(map);
+            })
+            .catch(error => console.error('Error al cargar el GeoJSON:', error));
+    </script>
 </body>
 </html>
