@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mostrar GeoJSON con Leaflet</title>
+    <title>Cargando Mapa de Bolivia</title>
     <!-- Incluir Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         #map {
-            height: 600px; /* Altura del mapa */
+            height: 800px; /* Altura del mapa */
             width: 100%;   /* Ancho del mapa */
         }
     </style>
@@ -49,6 +49,9 @@
                         }
                     }
                 }).addTo(map);
+                // Centrar el mapa en el contenido del GeoJSON
+                const bounds = geoJSONLayer.getBounds(); // Obtener el bbox del GeoJSON
+                map.fitBounds(bounds); // Ajustar el mapa al bbox
             })
             .catch(error => console.error('Error al cargar el GeoJSON:', error));
     </script>
