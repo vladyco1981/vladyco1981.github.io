@@ -14,14 +14,14 @@
     </style>
 </head>
 <body>
-    <h1>Mostrar GeoJSON con Leaflet</h1>
+    <h1>Cargando Mapa de Bolivia</h1>
     <div id="map"></div>
 
     <!-- Incluir Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         // Crear el mapa y centrarlo en una ubicación inicial
-        const map = L.map('map').setView([40.4168, -3.7038], 6); // Centro en España, zoom 6
+        const map = L.map('map').setView([-15.041, -51.70], 7); // Centro en España, zoom 6
 
         // Añadir una capa de tiles (mapa base)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
