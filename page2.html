@@ -44,8 +44,8 @@
                     },
                     onEachFeature: function(feature, layer) {
                         // Mostrar un popup con información del feature
-                        if (feature.properties && feature.properties.name) {
-                            layer.bindPopup(feature.properties.name);
+                        if (feature.properties && feature.properties.COUNTRY) {
+                            layer.bindPopup(feature.properties.COUNTRY);
                         }
                     }
                 }).addTo(map);
