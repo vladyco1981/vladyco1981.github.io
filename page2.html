@@ -51,13 +51,12 @@
                             // Crear el contenido del popup
                             const popupContent = `
                                 <strong>Nombre:</strong> ${feature.properties.COUNTRY || 'Sin nombre'}<br>
-                                <strong>Descripción:</strong> ${feature.properties.description || 'Sin descripción'}
                             `;
                             // Asignar el popup a la capa
                             layer.bindPopup(popupContent);
-                            }
+                            }}
                 }).addTo(map);
-            });
+            })
             .catch(error => console.error('Error al cargar el GeoJSON:', error));
     </script>
 </body>
